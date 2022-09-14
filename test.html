@@ -1,0 +1,80 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 800px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"group": 1, "id": 1, "label": "computer science", "shape": "dot", "size": 45, "title": "computer science"}, {"group": 2, "id": 2, "label": "lecun", "shape": "dot", "size": 35, "title": "lecun"}, {"group": 2, "id": 3, "label": "ai", "shape": "dot", "size": 35, "title": "ai"}, {"group": 2, "id": 4, "label": "science", "shape": "dot", "size": 35, "title": "science"}, {"group": 2, "id": 6, "label": "neural networks", "shape": "dot", "size": 35, "title": "neural networks"}, {"group": 2, "id": 7, "label": "artificial intelligence", "shape": "dot", "size": 35, "title": "artificial intelligence"}, {"group": 3, "id": 5, "label": "research", "shape": "dot", "size": 30, "title": "research"}, {"group": 3, "id": 8, "label": "machine learning", "shape": "dot", "size": 30, "title": "machine learning"}]);
+        edges = new vis.DataSet([{"from": 1, "label": 10, "to": 2, "weight": 10}, {"from": 1, "label": 10, "to": 3, "weight": 10}, {"from": 1, "label": 10, "to": 4, "weight": 10}, {"from": 1, "label": 10, "to": 6, "weight": 10}, {"from": 1, "label": 10, "to": 7, "weight": 10}, {"from": 4, "label": 10, "to": 5, "weight": 10}, {"from": 7, "label": 10, "to": 8, "weight": 10}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {"nodes": {"font": {"size": 20, "bold": true}}, "edges": {"color": "blue", "smooth": false}, "physics": {"barnesHut": {"gravitationalConstant": -500000, "centralGravity": 12, "springLength": 50, "springConstant": 0.7, "damping": 3, "avoidOverlap": 10}}, "interaction": {"selectConnectedEdges": true, "dragNodes": true, "hideEdgesOnDrag": false, "hideNodesOnDrag": false}};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
